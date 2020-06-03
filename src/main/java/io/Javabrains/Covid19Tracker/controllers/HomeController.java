@@ -19,8 +19,11 @@ public class HomeController {
     public String home(Model model) {
 	List <LocationStats> allStats = Covid19_DataServices.getAllStats();
 	int TotalReportedCases = allStats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
+	int TotalNewCases = allStats.stream().mapToInt(stat -> stat.getDiffStatsfromPrevday()).sum();
      model.addAttribute("locationStats" , allStats);
      model.addAttribute("TotalReportedCases" , TotalReportedCases);
+     model.addAttribute("TotalNewCases" , TotalNewCases);
+
         return "home";
     }
 }

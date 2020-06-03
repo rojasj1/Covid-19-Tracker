@@ -9,35 +9,41 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
-
 <body>
+<div class="container">
+
+
 <h1>Covid-19 Tracker Application</h1>
 <p>This application lists the current number of cases reported throughout the world</p>
 
 <div class="jumbotron">
-  <h1 class="display-4" th:text="${TotalReportedCases}">Covid-19 Tracker</h1>
+  <h1 class="display-4" th:text="${TotalReportedCases}"></h1>
   <p class="lead">Total Cases reported in real time</p>
+  <hr class="my-4">
+  <p>
+  <span>New cases reported since yesterday: </span>
+  <span th:text="${TotalNewCases}"></span>
+  
+  </p>
 </div>
 
 
-
-
-
-
-
-<table>
+<table class="table table-hover">
     <tr>
-        <th>State</th>
+        <th>Province</th>
         <th>Country</th>
         <th>Total Cases Reported</th>
+        <th>Changes since yesterday</th>
+        
     </tr>
     <tr th:each="locationStat : ${locationStats}">
         <td th:text="${locationStat.state}"></td>
         <td th:text="${locationStat.country}"></td>
-        <td th:text="${locationStat.LatestTotalCases}"></td>
+        <td th:text="${locationStat.LatestTotalCases}">0</td>
+        <td th:text="${locationStat.DiffStatsfromPrevday}">0</td>
     </tr>
 </table>
-
+</div>
 </body>
 
 </html>
